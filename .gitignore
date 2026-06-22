@@ -1,0 +1,36 @@
+# Datasets — never commit raw images
+data/
+!data/.gitkeep
+
+# Trained model weights — too large for git, regenerate via scripts
+outputs/*.pth
+outputs/*.joblib
+outputs/checkpoints/
+
+# Keep generated metrics/plots out by default; un-ignore selectively per commit
+# when you want to check in a specific result (see docs/README notes per phase)
+outputs/*.png
+outputs/*.json
+outputs/*.csv
+!outputs/.gitkeep
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+.pytest_cache/
+
+# OS / editor
+.DS_Store
+.vscode/
+*.swp
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment secrets
+.env
