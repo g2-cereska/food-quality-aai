@@ -19,13 +19,38 @@ https://www.kaggle.com/datasets/muhammad0subhan/fruit-and-vegetable-disease-heal
 
    ```
    data/
-     CaseStudyDataset/
-       Apple_Fresh/
+     Fruit And Vegetable Diseases Dataset/
+       Apple_Healthy/
        Apple_Rotten/
-       Banana_Fresh/
+       Banana_Healthy/
        Banana_Rotten/
-       ...
+       Bellpepper_Healthy/
+       Bellpepper_Rotten/
+       Carrot_Healthy/
+       Carrot_Rotten/
+       Cucumber_Healthy/
+       Cucumber_Rotten/
+       Grape_Healthy/
+       Grape_Rotten/
+       Guava_Healthy/
+       Guava_Rotten/
+       Jujube_Healthy/
+       Jujube_Rotten/
+       Mango_Healthy/
+       Mango_Rotten/
+       Orange_Healthy/
+       Orange_Rotten/
+       Pomegranate_Healthy/
+       Pomegranate_Rotten/
+       Potato_Healthy/
+       Potato_Rotten/
+       Strawberry_Healthy/
+       Strawberry_Rotten/
+       Tomato_Healthy/
+       Tomato_Rotten/
    ```
+
+   26 classes total (13 produce types x 2 conditions).
 
 3. The `data/` folder is gitignored — the raw images are never committed to
    this repository. Anyone cloning the repo needs to download the dataset

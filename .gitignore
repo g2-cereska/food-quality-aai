@@ -2,17 +2,15 @@
 data/
 !data/.gitkeep
 
-# Trained model weights — too large for git, regenerate via scripts
-outputs/*.pth
-outputs/*.joblib
-outputs/checkpoints/
+# Trained model weights — too large to track sensibly in git history,
+# regenerate via: python -m src.train --architecture <name>
+outputs/**/*.pth
+outputs/**/*.joblib
+outputs/**/checkpoints/
 
-# Keep generated metrics/plots out by default; un-ignore selectively per commit
-# when you want to check in a specific result (see docs/README notes per phase)
-outputs/*.png
-outputs/*.json
-outputs/*.csv
-!outputs/.gitkeep
+# Result artifacts (metrics.json, classification_report.csv, confusion
+# matrix and training curve images) ARE committed — they're small,
+# human-readable, and are the actual evidence of what was run.
 
 # Python
 __pycache__/

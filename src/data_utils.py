@@ -1,8 +1,8 @@
 """Data loading and preprocessing for the fruit/vegetable quality dataset.
 
 Expects the Kaggle dataset extracted under data/ with one subfolder per
-class, e.g. data/CaseStudyDataset/Apple_Fresh, data/CaseStudyDataset/Apple_Rotten.
-See docs/dataset.md for download and setup instructions.
+class, e.g. data/Fruit And Vegetable Diseases Dataset/Apple_Healthy,
+.../Apple_Rotten. See docs/dataset.md for download and setup instructions.
 """
 
 from __future__ import annotations
