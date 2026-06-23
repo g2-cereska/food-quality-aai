@@ -1,0 +1,13 @@
+{
+  "architecture": "efficientnet_b0",
+  "source_dataset": "Freshness44 (Kaggle: siavash93/freshness44)",
+  "samples_per_class_requested": 100,
+  "total_images_evaluated": 2600,
+  "skipped_unreadable_images": 0,
+  "excluded_classes": [
+    "Grape__Healthy",
+    "Grape__Rotten"
+  ],
+  "ood_accuracy": 0.7677,
+  "ood_macro_f1": 0.6858
+}

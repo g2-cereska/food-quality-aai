@@ -71,3 +71,55 @@ reproducible without needing to commit a pre-split copy of the dataset.
 - Image quality, lighting, and background vary considerably across
   classes, since the images are sourced from different photographers and
   conditions rather than a single controlled capture setup.
+
+## Out-of-distribution generalisation test
+
+To check whether in-distribution test accuracy holds up on images from a
+different photo source, this project also uses a sample from
+**Freshness44**:
+
+https://www.kaggle.com/datasets/siavash93/freshness44
+
+Freshness44 is itself a merge of five separate public datasets (53,616
+images, 22 fruit/vegetable types), built specifically to support
+generalisation testing across varied photo sources.
+
+### Setup
+
+1. Download the full dataset (7GB) via the Kaggle CLI:
+   ```
+   kaggle datasets download -d siavash93/freshness44
+   ```
+2. Extract it, then copy **only** the folders for produce types that
+   overlap with this project's 28 trained classes into `ood_test_data/`
+   at the repo root:
+   ```
+   ood_test_data/
+     Freshness44/
+       Apple_Fresh/        Apple_Rotten/
+       Banana_Fresh/       Banana_Rotten/
+       Bellpepper_Fresh/   Bellpepper_Rotten/
+       Carrot_Fresh/       Carrot_Rotten/
+       Cucumber_Fresh/     Cucumber_Rotten/
+       Guava_Fresh/        Guava_Rotten/
+       Jujube_Fresh/       Jujube_Rotten/
+       Mango_Fresh/        Mango_Rotten/
+       Orange_Fresh/       Orange_Rotten/
+       Pomegranate_Fresh/  Pomegranate_Rotten/
+       Potato_Fresh/       Potato_Rotten/
+       Strawberry_Fresh/   Strawberry_Rotten/
+       Tomato_Fresh/       Tomato_Rotten/
+   ```
+3. Delete the rest of the 7GB download — only these 26 folders are used.
+
+**Note on Grape**: this project's `Grape__Healthy`/`Grape__Rotten` classes
+are excluded from the OOD test. Freshness44 also has a "Grape" folder,
+but it contains images of grapefruit, not grapes — a different produce
+type entirely. Rather than silently testing against the wrong fruit,
+this class is left out of the generalisation test and noted as a
+limitation in the technical report.
+
+Run the test with:
+```
+python -m src.ood_test --architecture efficientnet_b0 --samples-per-class 100
+```

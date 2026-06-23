@@ -1,6 +1,8 @@
 # Datasets — never commit raw images
 data/
 !data/.gitkeep
+ood_test_data/
+!ood_test_data/.gitkeep
 
 # Trained model weights — too large to track sensibly in git history,
 # regenerate via: python -m src.train --architecture <name>
@@ -21,6 +23,9 @@ venv/
 env/
 *.egg-info/
 .pytest_cache/
+
+# Kaggle API credentials — never commit
+kaggle.json
 
 # OS / editor
 .DS_Store
