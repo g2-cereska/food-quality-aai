@@ -24,12 +24,13 @@ Entries are added chronologically as the project progresses.
   `docs/dataset.md`).
 - **What was changed/rejected**: N/A at this stage — structure was
   accepted as proposed and will be evaluated as the project develops.
-- **Reflection**: Useful for translating the marking rubric into a
-  concrete, demonstrable build order rather than a vague task list. The
-  main risk of over-relying on this kind of planning is that it can
-  front-load structure before the actual technical decisions (e.g. model
-  choice, hyperparameters) have been tested — those decisions still need
-  to be made and justified independently as training results come in.
+- **Reflection**: The roadmap felt right as soon as I saw it, so I went
+  with it straight away rather than questioning the structure. In
+  hindsight I think that was a reasonable call given it directly mapped
+  onto the marking criteria, but it also means the early structure
+  decisions weren't independently stress-tested by me at the time - any
+  problems with it would only have shown up once I started actually
+  building against it.
 
 ## Entry 2
 
@@ -49,13 +50,13 @@ Entries are added chronologically as the project progresses.
   dataset is downloaded locally. Will note here if directory structure
   assumptions need correcting once run against the actual Kaggle folder
   layout.
-- **Reflection**: The data leakage avoidance pattern (single raw dataset
-  + split indices + transform-per-subset) is a genuine technical decision
-  worth understanding rather than copying blindly — confirmed
-  understanding of why fitting transforms separately per split would be
-  incorrect (train-time augmentation must not be applied to val/test
-  data, but all three splits must come from the same underlying sample
-  pool and same random seed for a fair comparison).
+- **Reflection**: I had a rough sense that training and test data should
+  be handled differently, but I hadn't actually thought through why
+  augmentation specifically can't be applied to validation/test data, or
+  why all three splits need to come from the same underlying random
+  split rather than being loaded separately. Seeing it laid out made the
+  reasoning click properly rather than just being a rule I was following
+  without understanding.
 
 <!-- Add new entries below this line as the project progresses -->
 
@@ -78,16 +79,19 @@ Entries are added chronologically as the project progresses.
   (`Apple__Healthy`) and Freshness44's (`Apple_Fresh`). The OOD test
   script structure (sampling, inference loop, metrics output matching my
   existing outputs/ format).
-- **What was changed/rejected**: I personally found, during manual
-  inspection of the downloaded folders, that Freshness44's "Grape"
-  folder actually contains grapefruit images, not grapes - this was not
-  something Claude or the search results caught, and it meant excluding
-  Grape__Healthy/Grape__Rotten from the test rather than using a
-  mismatched class as Claude's first mapping attempt assumed.
-- **Reflection**: This is a good example of why I shouldn't take a
-  generated class-mapping at face value - the folder *names* looked
-  like a correct match, but only opening the actual images caught the
-  error. Automated/LLM-assisted mapping is useful for the bulk of
-  correct matches but still needs a human sanity check on ambiguous
-  ones, especially when working across datasets that weren't built by
-  the same team with the same naming conventions.
+- **What was changed/rejected**: Something about the "Grape" folder felt
+  off to me when I was going through the folders before deleting the
+  unmatched ones, so I opened a few images to check rather than trusting
+  the name. That's when I realised it was actually grapefruit, not
+  grapes - not something Claude or the earlier web search had caught,
+  since the folder name itself looked like a clean match. This meant
+  excluding Grape__Healthy/Grape__Rotten from the OOD test rather than
+  using a mismatched class as the first mapping attempt assumed.
+- **Reflection**: I'm glad I checked rather than just trusting the
+  folder name, since the mapping would otherwise have silently tested
+  the model against the wrong fruit and the result would have looked
+  valid without actually being valid. It's made me more cautious about
+  taking a generated class-mapping at face value generally - the names
+  matching is not the same as the contents matching, especially across
+  datasets that weren't built by the same team with the same naming
+  conventions.
