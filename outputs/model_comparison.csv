@@ -1,0 +1,4 @@
+architecture,test_accuracy,test_macro_f1,total_params,training_time_seconds,avg_inference_ms_per_image
+efficientnet_b0,0.9747,0.9595,4043416,976.4,7.07
+mobilenet_v2,0.9704,0.9497,2259740,1109.6,6.53
+resnet18,0.9529,0.9204,11190876,1085.4,6.47
