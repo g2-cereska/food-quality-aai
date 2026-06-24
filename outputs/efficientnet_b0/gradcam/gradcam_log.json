@@ -1,0 +1,362 @@
+[
+  {
+    "source": "in_distribution",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Pomegranate__Healthy",
+    "correct": true,
+    "confidence": 0.9911,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Pomegranate__Healthy\\FreshPomegranate (1).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Pomegranate__Healthy\\0_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Pomegranate__Healthy",
+    "correct": true,
+    "confidence": 0.9986,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Pomegranate__Healthy\\FreshPomegranate (10).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Pomegranate__Healthy\\1_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Pomegranate__Healthy",
+    "correct": true,
+    "confidence": 0.9994,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Pomegranate__Healthy\\FreshPomegranate (100).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Pomegranate__Healthy\\2_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Pomegranate__Healthy",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Pomegranate__Healthy\\FreshPomegranate (101).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Pomegranate__Healthy\\3_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Tomato__Healthy",
+    "correct": false,
+    "confidence": 0.9933,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Pomegranate_Fresh\\20190820_143522.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Pomegranate__Healthy\\0_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Tomato__Healthy",
+    "correct": false,
+    "confidence": 0.9785,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Pomegranate_Fresh\\20190820_143522_22896.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Pomegranate__Healthy\\1_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Tomato__Healthy",
+    "correct": false,
+    "confidence": 0.9831,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Pomegranate_Fresh\\20190820_143522_22897.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Pomegranate__Healthy\\2_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Pomegranate__Healthy",
+    "predicted_class": "Tomato__Healthy",
+    "correct": false,
+    "confidence": 0.9917,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Pomegranate_Fresh\\20190820_143522_22898.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Pomegranate__Healthy\\3_WRONG.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Guava__Rotten",
+    "correct": true,
+    "confidence": 0.9999,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Guava__Rotten\\RottenGuava (1).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Guava__Rotten\\0_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Guava__Rotten",
+    "correct": true,
+    "confidence": 0.9935,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Guava__Rotten\\RottenGuava (10).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Guava__Rotten\\1_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Guava__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Guava__Rotten\\RottenGuava (100).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Guava__Rotten\\2_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Guava__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Guava__Rotten\\RottenGuava (101).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Guava__Rotten\\3_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Mango__Rotten",
+    "correct": false,
+    "confidence": 0.688,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Guava_Rotten\\IMG20200728184715.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Guava__Rotten\\0_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Cucumber__Rotten",
+    "correct": false,
+    "confidence": 0.2512,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Guava_Rotten\\IMG20200728184716.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Guava__Rotten\\1_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Mango__Rotten",
+    "correct": false,
+    "confidence": 0.875,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Guava_Rotten\\IMG20200728184734.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Guava__Rotten\\2_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Guava__Rotten",
+    "predicted_class": "Bellpepper__Rotten",
+    "correct": false,
+    "confidence": 0.4135,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Guava_Rotten\\IMG20200728184737.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Guava__Rotten\\3_WRONG.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Bellpepper__Rotten",
+    "correct": true,
+    "confidence": 0.9993,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Bellpepper__Rotten\\rottenPepper (1).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Bellpepper__Rotten\\0_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Bellpepper__Rotten",
+    "correct": true,
+    "confidence": 0.9992,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Bellpepper__Rotten\\rottenPepper (100).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Bellpepper__Rotten\\1_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Tomato__Rotten",
+    "correct": false,
+    "confidence": 0.8138,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Bellpepper__Rotten\\rottenPepper (101).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Bellpepper__Rotten\\2_WRONG.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Bellpepper__Rotten",
+    "correct": true,
+    "confidence": 0.9958,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Bellpepper__Rotten\\rottenPepper (102).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Bellpepper__Rotten\\3_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Tomato__Rotten",
+    "correct": false,
+    "confidence": 0.545,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Bellpepper_Rotten\\Image101.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Bellpepper__Rotten\\0_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Tomato__Rotten",
+    "correct": false,
+    "confidence": 0.5702,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Bellpepper_Rotten\\Image103.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Bellpepper__Rotten\\1_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Tomato__Rotten",
+    "correct": false,
+    "confidence": 0.5636,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Bellpepper_Rotten\\Image105.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Bellpepper__Rotten\\2_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Bellpepper__Rotten",
+    "predicted_class": "Tomato__Rotten",
+    "correct": false,
+    "confidence": 0.5504,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Bellpepper_Rotten\\Image107.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Bellpepper__Rotten\\3_WRONG.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Apple__Healthy",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Apple__Healthy\\FreshApple (1).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Apple__Healthy\\0_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Apple__Healthy",
+    "correct": true,
+    "confidence": 0.9996,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Apple__Healthy\\FreshApple (10).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Apple__Healthy\\1_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Apple__Healthy",
+    "correct": true,
+    "confidence": 0.5646,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Apple__Healthy\\FreshApple (100).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Apple__Healthy\\2_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Apple__Healthy",
+    "correct": true,
+    "confidence": 0.9979,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Apple__Healthy\\FreshApple (101).jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Apple__Healthy\\3_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Bellpepper__Rotten",
+    "correct": false,
+    "confidence": 0.4801,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Apple_Fresh\\20190809_115439.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Apple__Healthy\\0_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Guava__Healthy",
+    "correct": false,
+    "confidence": 0.7846,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Apple_Fresh\\20190809_115448.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Apple__Healthy\\1_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Cucumber__Rotten",
+    "correct": false,
+    "confidence": 0.4875,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Apple_Fresh\\20190809_115451.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Apple__Healthy\\2_WRONG.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Apple__Healthy",
+    "predicted_class": "Potato__Healthy",
+    "correct": false,
+    "confidence": 0.5753,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Apple_Fresh\\20190809_115459.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Apple__Healthy\\3_WRONG.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Banana__Rotten\\Screen Shot 2018-06-12 at 8.47.14 PM.png",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Banana__Rotten\\0_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Banana__Rotten\\Screen Shot 2018-06-12 at 8.47.28 PM.png",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Banana__Rotten\\1_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Banana__Rotten\\Screen Shot 2018-06-12 at 8.47.57 PM.png",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Banana__Rotten\\2_correct.png"
+  },
+  {
+    "source": "in_distribution",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\data\\Fruit And Vegetable Diseases Dataset\\Banana__Rotten\\Screen Shot 2018-06-12 at 8.48.07 PM.png",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\in_distribution\\Banana__Rotten\\3_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Banana_Rotten\\Image1001.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Banana__Rotten\\0_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Banana_Rotten\\Image1003.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Banana__Rotten\\1_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Banana_Rotten\\Image1005.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Banana__Rotten\\2_correct.png"
+  },
+  {
+    "source": "ood",
+    "true_class": "Banana__Rotten",
+    "predicted_class": "Banana__Rotten",
+    "correct": true,
+    "confidence": 1.0,
+    "source_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\ood_test_data\\Freshness44\\Banana_Rotten\\Image1007.jpg",
+    "output_image": "C:\\Users\\Gytis\\Desktop\\food-quality-aai\\outputs\\efficientnet_b0\\gradcam\\ood\\Banana__Rotten\\3_correct.png"
+  }
+]
