@@ -21,9 +21,9 @@ import pandas as pd
 import torch
 from sklearn.metrics import classification_report, confusion_matrix
 from torch import nn, optim
-from torch.utils.data import DataLoader
+from torch.utils.data import DataLoader, WeightedRandomSampler
 
-from src.data_utils import build_splits
+from src.data_utils import build_splits, class_counts, _load_raw_dataset
 from src.model_utils import build_model, count_parameters, get_device
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
@@ -42,6 +42,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--batch-size", type=int, default=32)
     parser.add_argument("--learning-rate", type=float, default=1e-3)
     parser.add_argument("--num-workers", type=int, default=4)
+    parser.add_argument("--weighted-sampling", action="store_true",
+                    help="Use WeightedRandomSampler to compensate for class imbalance.")
     return parser.parse_args()
 
 
@@ -155,15 +157,45 @@ def main() -> None:
     print(f"Architecture: {args.architecture}")
     print(f"Device: {device}")
 
-    output_dir = PROJECT_ROOT / "outputs" / args.architecture
+    suffix = "_weighted" if args.weighted_sampling else ""
+    output_dir = PROJECT_ROOT / "outputs" / f"{args.architecture}{suffix}"
     output_dir.mkdir(parents=True, exist_ok=True)
+
 
     train_dataset, val_dataset, test_dataset, class_names = build_splits(args.data_dir)
     print(f"Classes: {len(class_names)}")
     print(f"Train/val/test sizes: {len(train_dataset)}/{len(val_dataset)}/{len(test_dataset)}")
 
-    train_loader = DataLoader(train_dataset, batch_size=args.batch_size,
-                               shuffle=True, num_workers=args.num_workers)
+    if args.weighted_sampling:
+        # Each training sample is weighted by the inverse of its class
+        # frequency, so smaller classes are sampled more often per epoch.
+        # This addresses the 14x imbalance between the largest classes
+        # (Apple, Banana ~2000-3000 images) and smallest (Grape, Guava,
+        # Jujube, Pomegranate - exactly 200 images each).
+        raw = _load_raw_dataset(args.data_dir)
+        counts = class_counts(raw)
+        total = sum(counts.values())
+        class_weights = {name: total / count for name, count in counts.items()}
+        sample_weights = [
+            class_weights[class_names[label]]
+            for _, label in raw.samples
+        ]
+        train_indices = train_dataset.subset.indices
+        train_weights = [sample_weights[i] for i in train_indices]
+        sampler = WeightedRandomSampler(
+            weights=train_weights,
+            num_samples=len(train_weights),
+            replacement=True,
+        )
+        train_loader = DataLoader(
+            train_dataset, batch_size=args.batch_size,
+            sampler=sampler, num_workers=args.num_workers,
+        )
+        print("Using WeightedRandomSampler to compensate for class imbalance.")
+    else:
+        train_loader = DataLoader(train_dataset, batch_size=args.batch_size,
+                                   shuffle=True, num_workers=args.num_workers)
+
     val_loader = DataLoader(val_dataset, batch_size=args.batch_size,
                              shuffle=False, num_workers=args.num_workers)
     test_loader = DataLoader(test_dataset, batch_size=args.batch_size,
@@ -229,6 +261,7 @@ def main() -> None:
             "epochs": args.epochs,
             "batch_size": args.batch_size,
             "learning_rate": args.learning_rate,
+            "weighted_sampling": args.weighted_sampling,
         },
         "parameters": param_counts,
         "best_val_accuracy": round(best_val_acc, 4),
