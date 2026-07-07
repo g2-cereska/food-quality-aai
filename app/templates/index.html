@@ -1,0 +1,457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Produce Quality Classifier — Bristol Food Network</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink:      #1a1a18;
+      --mid:      #6b6b65;
+      --rule:     #e0ddd6;
+      --paper:    #f7f5f0;
+      --white:    #ffffff;
+      --fresh:    #2d6a2d;
+      --rotten:   #8b2a1a;
+      --accent:   #3d6b35;
+      --mono:     'Courier New', Courier, monospace;
+      --sans:     system-ui, -apple-system, sans-serif;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--paper);
+      color: var(--ink);
+      min-height: 100vh;
+      padding: 0 1rem 4rem;
+    }
+
+    /* ── Header ── */
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding: 1.5rem 0 1rem;
+      margin-bottom: 2.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--mid);
+      margin-bottom: 0.35rem;
+    }
+    h1 {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+    .subtitle {
+      font-size: 0.85rem;
+      color: var(--mid);
+      margin-top: 0.4rem;
+    }
+
+    /* ── Layout ── */
+    .container { max-width: 900px; margin: 0 auto; }
+
+    /* ── Upload zone ── */
+    .upload-zone {
+      border: 2px dashed var(--rule);
+      border-radius: 6px;
+      background: var(--white);
+      padding: 2.5rem 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: border-color 0.15s, background 0.15s;
+      position: relative;
+    }
+    .upload-zone:hover,
+    .upload-zone.dragover {
+      border-color: var(--accent);
+      background: #f0f5ee;
+    }
+    .upload-zone input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+    .upload-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    .upload-zone p {
+      color: var(--mid);
+      font-size: 0.9rem;
+      line-height: 1.5;
+    }
+    .upload-zone strong { color: var(--ink); }
+
+    .classify-btn {
+      display: block;
+      width: 100%;
+      margin-top: 1rem;
+      padding: 0.85rem 1.5rem;
+      background: var(--accent);
+      color: var(--white);
+      border: none;
+      border-radius: 4px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: opacity 0.15s;
+    }
+    .classify-btn:hover { opacity: 0.88; }
+    .classify-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* ── Model not ready banner ── */
+    .not-ready {
+      background: #fff3cd;
+      border: 1px solid #ffc107;
+      border-radius: 4px;
+      padding: 1rem 1.25rem;
+      font-size: 0.875rem;
+      color: #856404;
+      margin-bottom: 1.5rem;
+    }
+    .not-ready code {
+      background: #fff;
+      padding: 0.1em 0.4em;
+      border-radius: 3px;
+      font-family: var(--mono);
+      font-size: 0.85em;
+    }
+
+    /* ── Status / loading ── */
+    .status {
+      text-align: center;
+      color: var(--mid);
+      font-size: 0.875rem;
+      margin-top: 1rem;
+      min-height: 1.4em;
+    }
+    .spinner {
+      display: inline-block;
+      width: 14px; height: 14px;
+      border: 2px solid var(--rule);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+      vertical-align: middle;
+      margin-right: 6px;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ── Results panel ── */
+    #results { display: none; margin-top: 2rem; }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    @media (max-width: 580px) {
+      .result-grid { grid-template-columns: 1fr; }
+    }
+
+    .image-panel {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .image-panel-label {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      padding: 0.55rem 0.9rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    .image-panel img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1;
+      object-fit: cover;
+    }
+
+    /* ── Predictions ── */
+    .predictions {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-radius: 6px;
+      overflow: hidden;
+    }
+    .predictions-header {
+      padding: 0.75rem 1rem;
+      border-bottom: 1px solid var(--rule);
+      background: var(--paper);
+    }
+    .predictions-header h2 {
+      font-size: 0.8rem;
+      font-family: var(--mono);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--mid);
+      font-weight: 500;
+    }
+    .prediction-item {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid var(--rule);
+    }
+    .prediction-item:last-child { border-bottom: none; }
+
+    .pred-top-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 0.4rem;
+    }
+    .pred-rank {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--mid);
+      margin-right: 0.5rem;
+    }
+    .pred-name {
+      font-size: 0.95rem;
+      font-weight: 600;
+      flex: 1;
+    }
+    .pred-name.fresh { color: var(--fresh); }
+    .pred-name.rotten { color: var(--rotten); }
+    .pred-pct {
+      font-family: var(--mono);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+    .pred-bar-track {
+      height: 4px;
+      background: var(--rule);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .pred-bar-fill {
+      height: 100%;
+      border-radius: 999px;
+      background: var(--accent);
+      transition: width 0.4s ease;
+    }
+    .prediction-item:first-child .pred-bar-fill {
+      background: var(--accent);
+    }
+    .prediction-item:not(:first-child) .pred-bar-fill {
+      background: var(--rule);
+    }
+    .pred-confidence-label {
+      font-size: 0.72rem;
+      color: var(--mid);
+      margin-top: 0.3rem;
+    }
+
+    /* ── Explanation note ── */
+    .explanation-note {
+      background: var(--white);
+      border: 1px solid var(--rule);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 6px 6px 0;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.82rem;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+    .explanation-note strong { color: var(--ink); }
+
+    /* ── Error ── */
+    .error-msg {
+      background: #fdf0f0;
+      border: 1px solid #e8a0a0;
+      border-radius: 4px;
+      padding: 0.9rem 1.1rem;
+      font-size: 0.875rem;
+      color: var(--rotten);
+      margin-top: 1rem;
+      display: none;
+    }
+
+    /* ── Footer ── */
+    footer {
+      max-width: 900px;
+      margin: 3rem auto 0;
+      padding-top: 1rem;
+      border-top: 1px solid var(--rule);
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--mid);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="eyebrow">Bristol Regional Food Network — AAI (UFCFUR-15-3)</div>
+  <h1>Produce Quality Classifier</h1>
+  <div class="subtitle">EfficientNet-B0 · 28 classes · Grad-CAM explainability</div>
+</header>
+
+<div class="container">
+
+  {% if not model_ready %}
+  <div class="not-ready">
+    <strong>Model weights not found.</strong> Run training first:<br>
+    <code>python -m src.train --architecture efficientnet_b0 --epochs 10</code>
+  </div>
+  {% endif %}
+
+  <!-- Upload form -->
+  <div class="upload-zone" id="dropzone">
+    <input type="file" id="imageInput" accept="image/jpeg,image/png,image/webp" {% if not model_ready %}disabled{% endif %}>
+    <span class="upload-icon">🍎</span>
+    <p><strong>Drop a produce image here</strong><br>or click to browse · JPG, PNG, WebP · max 10 MB</p>
+  </div>
+
+  <button class="classify-btn" id="classifyBtn" disabled>Classify image</button>
+  <div class="status" id="status"></div>
+  <div class="error-msg" id="errorMsg"></div>
+
+  <!-- Results -->
+  <div id="results">
+    <div class="result-grid">
+      <div class="image-panel">
+        <div class="image-panel-label">Uploaded image</div>
+        <img id="originalImg" src="" alt="Uploaded produce image">
+      </div>
+      <div class="image-panel">
+        <div class="image-panel-label">Grad-CAM heatmap · top prediction</div>
+        <img id="heatmapImg" src="" alt="Grad-CAM attention heatmap">
+      </div>
+    </div>
+
+    <div class="predictions" id="predictionsPanel"></div>
+
+    <div class="explanation-note" style="margin-top: 1rem;">
+      <strong>How to read the heatmap:</strong> Warm colours (red/orange) show
+      regions that most strongly influenced the top prediction. If attention
+      concentrates on the produce itself, the model is working as intended. If it
+      falls on background or shadow, that may indicate a learned shortcut —
+      especially relevant for Pomegranate and Guava, where Grad-CAM analysis
+      revealed dataset-specific artefacts affecting generalisation.
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <span>EfficientNet-B0 · ImageNet pretrained · 97.47% in-distribution accuracy</span>
+  <span>OOD accuracy (Freshness44): 76.77%</span>
+</footer>
+
+<script>
+  const input = document.getElementById('imageInput');
+  const btn   = document.getElementById('classifyBtn');
+  const zone  = document.getElementById('dropzone');
+  const status = document.getElementById('status');
+  const errMsg = document.getElementById('errorMsg');
+  const results = document.getElementById('results');
+
+  let selectedFile = null;
+
+  // Enable classify button when a file is selected
+  input.addEventListener('change', () => {
+    selectedFile = input.files[0] || null;
+    btn.disabled = !selectedFile;
+    errMsg.style.display = 'none';
+    results.style.display = 'none';
+    status.textContent = selectedFile ? `Ready: ${selectedFile.name}` : '';
+  });
+
+  // Drag and drop
+  zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+  zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+  zone.addEventListener('drop', e => {
+    e.preventDefault();
+    zone.classList.remove('dragover');
+    const file = e.dataTransfer.files[0];
+    if (file) {
+      selectedFile = file;
+      btn.disabled = false;
+      status.textContent = `Ready: ${file.name}`;
+      results.style.display = 'none';
+      errMsg.style.display = 'none';
+    }
+  });
+
+  // Classify button
+  btn.addEventListener('click', async () => {
+    if (!selectedFile) return;
+
+    btn.disabled = true;
+    status.innerHTML = '<span class="spinner"></span>Running inference and Grad-CAM…';
+    errMsg.style.display = 'none';
+    results.style.display = 'none';
+
+    const formData = new FormData();
+    formData.append('image', selectedFile);
+
+    try {
+      const resp = await fetch('/predict', { method: 'POST', body: formData });
+      const data = await resp.json();
+
+      if (!resp.ok || data.error) {
+        throw new Error(data.error || 'Server error');
+      }
+
+      // Images
+      document.getElementById('originalImg').src = `data:image/png;base64,${data.original}`;
+      document.getElementById('heatmapImg').src  = `data:image/png;base64,${data.heatmap}`;
+
+      // Predictions
+      const panel = document.getElementById('predictionsPanel');
+      panel.innerHTML = `
+        <div class="predictions-header"><h2>Top predictions</h2></div>
+        ${data.predictions.map(p => {
+          const isHealthy = p.raw_class.includes('Healthy');
+          const colorClass = isHealthy ? 'fresh' : 'rotten';
+          const label = isHealthy ? 'Healthy' : 'Rotten';
+          return `
+          <div class="prediction-item">
+            <div class="pred-top-row">
+              <span class="pred-rank">#${p.rank}</span>
+              <span class="pred-name ${colorClass}">${p.class_name}</span>
+              <span class="pred-pct">${p.confidence}%</span>
+            </div>
+            <div class="pred-bar-track">
+              <div class="pred-bar-fill" style="width:${p.confidence}%"></div>
+            </div>
+            <div class="pred-confidence-label">${label} · confidence ${p.confidence}%</div>
+          </div>`;
+        }).join('')}
+      `;
+
+      results.style.display = 'block';
+      status.textContent = 'Done.';
+    } catch (err) {
+      errMsg.textContent = `Error: ${err.message}`;
+      errMsg.style.display = 'block';
+      status.textContent = '';
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>
